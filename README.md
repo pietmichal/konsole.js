@@ -7,6 +7,7 @@ command arguments
 ```
 
 ## Available commands
-print text - prints given text
-
-get commandname - downloads new command from repository
+| command | arguments | description |
+| ------- | --------- | ----------- |
+| print   | text      | prints given text |
+| get     | commandname | downloads new command from repository |
