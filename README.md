@@ -12,3 +12,6 @@ command arguments
 | help    | command   | prints information about command |
 | print   | text      | prints given text |
 | get     | command   | downloads new command from repository |
+
+## Requirements
+Working browser atm
