@@ -4,7 +4,21 @@
         <meta charset="utf-8">
         <title>konsole.js</title>
     </head>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://necolas.github.io/normalize.css/4.1.1/normalize.css">
     <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            background-color: #00101C;
+            color: #FEFEFE;
+            font-family: 'Open Sans';
+        }
+
+        h1, h2 {
+            text-align: center;
+        }
+
         #console {
             width: 600px;
             height: 300px;
@@ -12,9 +26,13 @@
             color: white;
             font-family: monospace;
             margin: 0 auto;
+            border: 3px #FEFEFE solid;
+            border-radius: 10px;
         }
     </style>
     <body>
+        <h1>konsole.js 0.1</h1>
+        <h2>Command line in your browser</h2>
         <div id="console"></div>
         <script src="konsole.js"></script>
         <script>konsole.init("#console")</script>
