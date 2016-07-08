@@ -10,7 +10,7 @@ Working example:
 <html>
     <head>
         <meta charset="utf-8">
-        <title>konsole.js example</title>
+        <title>konsole.js example page</title>
     </head>
     <style>
         #console {
