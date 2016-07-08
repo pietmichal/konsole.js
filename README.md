@@ -1,7 +1,13 @@
 # konsole.js
 Command line like application in browser.
 
+Current version: 0.1
+
 ## How to use
+``` javascript
+// example
+konsole.init("#id");
+```
 ```
 command arguments
 ```
@@ -9,10 +15,9 @@ command arguments
 ## Available commands
 | command | arguments | description |
 | ------- | --------- | ----------- |
-| help    | command   | prints information about command |
+| help    | command   | prints information about given command |
 | print   | text      | prints given text |
-| get     | command   | downloads new command from repository |
-| update  | command   | updates given command, updates all commands when no argument was provided |
+| version | -         | shows konsole.js version |
 
 ## Requirements
-Working browser atm
+¯\_(ツ)_/¯
