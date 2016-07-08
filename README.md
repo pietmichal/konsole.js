@@ -8,6 +8,8 @@ Current version: 0.1
 // example
 konsole.init("#id");
 ```
+
+Working command line:
 ```
 command arguments
 ```
