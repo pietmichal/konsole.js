@@ -44,3 +44,7 @@ command arguments
 
 ## Requirements
 ¯\_(ツ)_/¯
+
+## todo
+- cursor div overflow glitch
+- rework structure
