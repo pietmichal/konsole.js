@@ -31,10 +31,13 @@
         }
     </style>
     <body>
-        <h1>konsole.js 0.1</h1>
+        <h1>...</h1>
         <h2>Command line in your browser</h2>
         <div id="console"></div>
-        <script src="konsole.js"></script>
-        <script>konsole.init("#console")</script>
+        <script src="https://raw.githubusercontent.com/Harsay/konsole.js/master/konsole.js"></script>
+        <script>
+            konsole.init("#console");
+            document.querySelector("h1").innerHTML = 'konsole.js ' + konsole.js;
+        </script>
     </body>
 </html>
