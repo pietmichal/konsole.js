@@ -1,7 +1,7 @@
 # konsole.js
 Command line like application in browser.
 
-Current version: 0.1
+Current version: 0.1.1
 
 ## How to use
 Working example:
