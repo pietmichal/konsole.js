@@ -21,13 +21,13 @@ const cursor = {
         this.interval = setInterval(this.update.bind(this), 500);
     },
     stop: function() {
-        if(this.shown) this.hide();
+        if (this.shown) this.hide();
         clearInterval(this.interval);
     }
 }
 
 const konsole = {
-    version: "0.1",
+    version: "0.1.1",
     consoleElement: null,
     currentLine: "",
     init: function(element) { 
@@ -36,41 +36,60 @@ const konsole = {
 
         document.onkeypress = this.processKeyCharacter.bind(this);
         document.onkeydown = this.processActionKey.bind(this);
+
+        this.writeLine('konsole.js ' + this.version + ' - Type "help" to see available commands');
+
         cursor.start();
 
-        this.createCommand('print', 'Prints given text.', function(args) {
-            konsole.writeLine(args.join(' '));
-        });
-
         this.createCommand('help', 'Shows help about given command.', function(args) {
-            if (args.length === 0) konsole.writeLine('Usage: help commandName');
-            else konsole.writeLine(konsole.commands[args[0]].helpMessage);
+            if (args.length === 0 || !konsole.commandExists(args[0])) {
+                konsole.writeLine('Available commands:');
+                for (let command in konsole.commands) {
+                    konsole.writeLine(command);
+                }
+            }
+            else {
+                konsole.writeLine(konsole.commands[args[0]].helpMessage);
+            }
         });
 
         this.createCommand('version', 'Shows konsole.js version.', function() {
             konsole.writeLine('konsole.js version '+konsole.version);
         });
+
+        this.createCommand('print', 'Prints given text.', function(args) {
+            konsole.writeLine(args.join(' '));
+        });
+
+
     },
     processKeyCharacter: function(event) {
-        if(event.keyCode === 13) return;
+        let keyCode = event.which || event.keyCode;
+        if (keyCode === 13 || keyCode === 8) return;
+
         cursor.stop();
-        let char = String.fromCharCode(event.keyCode);
+
+        let char = String.fromCharCode(keyCode);
         this.currentLine += char;
         this.write(char);
         this.scrollViewToBottom();
+
         cursor.start();
     },
     processActionKey: function(event) {
-        if(this.currentLine.length === 0) return;
+        if (this.currentLine.length === 0) return;
 
         cursor.stop();
 
-        if(event.keyCode === 13) { // enter
+        let keyCode = event.which || event.keyCode;
+
+        if (keyCode === 13) { // enter
             this.breakLine();
             this.parseCommand(this.currentLine);
             this.currentLine = "";
         }
-        else if(event.keyCode === 8) { // backspace
+        else if (keyCode === 8) { // backspace
+            console.log(this.currentLine);
             this.currentLine = this.currentLine.slice(0, -1);
             this.consoleElement.innerHTML = this.consoleElement.innerHTML.slice(0, -1);
         }
@@ -99,6 +118,9 @@ const konsole = {
         else {
             this.writeLine('Unknown command: ' + arr[0]);
         }
+    },
+    commandExists: function(command) {
+        return this.commands.hasOwnProperty(command);
     },
     createCommand: function(name, helpMessage, callback) {
         this.commands[name] = {
