@@ -1,7 +1,7 @@
 # konsole.js
 Command line like application in browser.
 
-Current version: 0.1.1
+Current version: 0.1.2
 
 ## How to use
 Working example:
@@ -46,5 +46,4 @@ command arguments
 ¯\_(ツ)_/¯
 
 ## todo
-- cursor div overflow glitch
 - rework structure

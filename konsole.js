@@ -27,9 +27,10 @@ const cursor = {
 }
 
 const konsole = {
-    version: "0.1.1",
+    version: "0.1.2",
     consoleElement: null,
     currentLine: "",
+    prompt: "> ",
     init: function(element) { 
         this.consoleElement = document.querySelector(element);
         this.consoleElement.setAttribute('style', 'overflow: auto; padding: 10px; box-sizing: border-box;');
@@ -38,6 +39,7 @@ const konsole = {
         document.onkeydown = this.processActionKey.bind(this);
 
         this.writeLine('konsole.js ' + this.version + ' - Type "help" to see available commands');
+        this.write(this.prompt);
 
         cursor.start();
 
@@ -60,8 +62,6 @@ const konsole = {
         this.createCommand('print', 'Prints given text.', function(args) {
             konsole.writeLine(args.join(' '));
         });
-
-
     },
     processKeyCharacter: function(event) {
         let keyCode = event.which || event.keyCode;
@@ -86,10 +86,10 @@ const konsole = {
         if (keyCode === 13) { // enter
             this.breakLine();
             this.parseCommand(this.currentLine);
+            this.write(this.prompt);
             this.currentLine = "";
         }
         else if (keyCode === 8) { // backspace
-            console.log(this.currentLine);
             this.currentLine = this.currentLine.slice(0, -1);
             this.consoleElement.innerHTML = this.consoleElement.innerHTML.slice(0, -1);
         }
@@ -104,6 +104,13 @@ const konsole = {
     },
     breakLine: function() {
         this.consoleElement.innerHTML += '<br>';
+    },
+    hasLineBreak: function() {
+        return this.consoleElement.innerHTML.substr(this.consoleElement.innerHTML.length - 4) === '<br>';
+    },
+    removeLineBreak: function() {
+        if(this.hasLineBreak())
+            this.consoleElement.innerHTML = this.consoleElement.innerHTML.replace(/<br>$/, ''); // replace last occurence of <br> with empty string.
     },
     write: function(str) {
         this.consoleElement.innerHTML += utils.htmlEntities(str);
