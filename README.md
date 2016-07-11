@@ -46,4 +46,9 @@ command arguments
 ¯\_(ツ)_/¯
 
 ## todo
-- rework structure
+- prevent backspace browser action
+- tutorial about adding commands in wiki
+- add requirements
+- add \n and text coloring
+- make standard commands not by createCommand function
+- you've expected next thing to do but it was I DIO!
