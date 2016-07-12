@@ -27,16 +27,16 @@ const cursor = {
 }
 
 const konsole = {
-    version: "0.1.2",
+    version: "0.1.2dev3",
     consoleElement: null,
     currentLine: "",
     prompt: "> ",
-    init: function(element) { 
+    init: function(element) {
         this.consoleElement = document.querySelector(element);
         this.consoleElement.setAttribute('style', 'overflow: auto; padding: 10px; box-sizing: border-box;');
 
-        document.onkeypress = this.processKeyCharacter.bind(this);
-        document.onkeydown = this.processActionKey.bind(this);
+        document.addEventListener('keypress', this.processKeyCharacter.bind(this));
+        document.addEventListener('keydown', this.processActionKey.bind(this));
 
         this.writeLine('konsole.js ' + this.version + ' - Type "help" to see available commands');
         this.write(this.prompt);
@@ -77,11 +77,12 @@ const konsole = {
         cursor.start();
     },
     processActionKey: function(event) {
+        let keyCode = event.which || event.keyCode;
+
+        if (keyCode === 8) event.preventDefault();
         if (this.currentLine.length === 0) return;
 
         cursor.stop();
-
-        let keyCode = event.which || event.keyCode;
 
         if (keyCode === 13) { // enter
             this.breakLine();
@@ -140,5 +141,3 @@ const konsole = {
     },
     commands: {}
 }
-
-
