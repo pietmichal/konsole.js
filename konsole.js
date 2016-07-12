@@ -35,7 +35,7 @@ const konsole = {
     init: function(element) {
         this.consoleElement = document.querySelector(element);
         this.consoleElement.setAttribute('style', 'overflow: auto; padding: 10px; box-sizing: border-box;');
-        welcomeMessage = 'konsole.js ' + this.version + ' - Type "help" to see available commands';
+        this.welcomeMessage = 'konsole.js ' + this.version + ' - Type "help" to see available commands';
 
         document.addEventListener('keypress', this.processKeyCharacter.bind(this));
         document.addEventListener('keydown', this.processActionKey.bind(this));
@@ -116,7 +116,7 @@ const konsole = {
             this.consoleElement.innerHTML = this.consoleElement.innerHTML.replace(/<br>$/, ''); // replace last occurence of <br> with empty string.
     },
     write: function(str) {
-        this.consoleElement.innerHTML += utils.htmlEntities(str);
+        this.consoleElement.innerHTML += utils.htmlEntities(str).replace(/\\n/g, '<br>');
     },
     parseCommand: function(str) {
         let arr = str.split(' ');

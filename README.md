@@ -48,6 +48,5 @@ command arguments
 ## todo
 - tutorial about adding commands in wiki
 - add requirements
-- add \n and text coloring
 - make standard commands not by createCommand function
 - allow command to block user input
