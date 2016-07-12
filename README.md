@@ -2,6 +2,8 @@
 Command line/Terminal like application in browser.
 You can use and create commands and (in the future) add them to repository to make them available to download.
 
+# [CHECK HOW IT WORKS HERE](http://harsay.github.io/konsole.js)
+
 Current version: 0.1.3
 
 ## How to use
