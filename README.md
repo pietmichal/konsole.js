@@ -3,8 +3,9 @@ Command line/Terminal like application in browser.
 You can use and create commands and (in the future) add them to repository to make them available to download.
 
 ## [CHECK HOW IT WORKS HERE](http://harsay.github.io/konsole.js)
+## [Repository for konsole.js repository server](http://github.com/harsay/konsole.js-repository-server)
 
-Current version: 0.1.3
+Current version: 0.1.4
 
 ## How to use
 Working example:
@@ -33,6 +34,7 @@ Working example:
     </style>
     <body>
         <div id="console"></div>
+        <script src="jsonfn.js"></script> <!-- required for get command to work -->
         <script src="konsole.js"></script>
         <script>konsole.init("#console")</script>
     </body>
@@ -48,10 +50,10 @@ Working example:
 | cls     | -         | Clears screen |
 | setPrompt | string  | Replaces default '>' prompt with given string |
 | asynctest |-        | Test command. Example of command using asynchronous calls |
+| get     | command   | Downloads command from online repository |
 
 ## Requirements
 Modern browser supporting ES6.
 
 ## todo
 - create wiki
-- repository service to enable download of custom commands

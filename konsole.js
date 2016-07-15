@@ -31,11 +31,12 @@ const cursor = {
 }
 
 const konsole = {
-    version: '0.1.3',
+    version: '0.1.4',
     consoleElement: null,
     currentLine: '',
     prompt: '>',
     welcomeMessage: '',
+    repositoryURL: 'http://localhost:3000',
     enableInput: true,
     init: function(element, welcomeMessage) {
         this.consoleElement = document.querySelector(element);
@@ -78,7 +79,7 @@ const konsole = {
             konsole.prompt = args.join(' ');
         });
 
-        this.createCommand('asynctest', 'test asynchornous command', function(args) {
+        this.createCommand('asynctest', 'test asynchronous command', function(args) {
             konsole.toggleInput();
             let interval = setInterval(() => konsole.write('.'), 300);
             setTimeout(() => {
@@ -89,6 +90,37 @@ const konsole = {
                 konsole.toggleInput();
               }, 1000);
             }, 1200);
+        });
+
+        this.createCommand('get', 'Gets command from online repository.', function(args) {
+            if (konsole.commandExists(args[0])) {
+              konsole.writeLine('You have this command!');
+              return;
+            }
+
+            konsole.toggleInput();
+            konsole.writeLine('Getting command from repository...');
+            let xhr = new XMLHttpRequest();
+            xhr.open('GET', konsole.repositoryURL+'/get/'+args[0]);
+
+            xhr.onload = function () {
+              if (xhr.status === 200) {
+                let commandObject = JSONfn.parse(xhr.response);
+                konsole.createCommand(commandObject.name, commandObject.helpMessage, commandObject.execute); // todo: use destructuring
+                konsole.writeLine('success!');
+              }
+              else {
+                konsole.writeLine(xhr.response);
+              }
+              konsole.toggleInput();
+            }
+
+            xhr.onerror = function () {
+              konsole.writeLine('error: ' + xhr.response);
+              konsole.toggleInput();
+            }
+
+            xhr.send();
         });
     },
     processKeyCharacter: function(event) {
@@ -160,10 +192,10 @@ const konsole = {
     commandExists: function(command) {
         return this.commands.hasOwnProperty(command);
     },
-    createCommand: function(name, helpMessage, callback) {
+    createCommand: function(name, helpMessage, execute) {
         this.commands[name] = {
             helpMessage: helpMessage,
-            execute: callback
+            execute: execute
         }
     },
     scrollViewToBottom: function() {
