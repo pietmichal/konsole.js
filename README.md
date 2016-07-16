@@ -1,8 +1,9 @@
 # konsole.js
 Command line/Terminal like application in browser.
 You can use and create commands and (in the future) add them to repository to make them available to download.
+My silly side project not being in active development. It was fun working on it ;)
 
-## [CHECK HOW IT WORKS HERE](http://harsay.github.io/konsole.js)
+## [You can check how it works here.](http://harsay.github.io/konsole.js)
 ## [Repository for konsole.js repository server](http://github.com/harsay/konsole.js-repository-server)
 
 Current version: 0.1.4
