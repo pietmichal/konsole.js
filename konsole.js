@@ -41,7 +41,7 @@ const konsole = {
     init: function(element, welcomeMessage) {
         this.consoleElement = document.querySelector(element);
         this.consoleElement.setAttribute('style', 'overflow: auto; padding: 10px; box-sizing: border-box;');
-        this.welcomeMessage = welcomeMessage || '# konsole.js ' + this.version + ' - Type "help" to see available commands.\\n# Created by Michal Pietraszko (@theHarsay)\\n# Available on Github: github.com/Harsay/konsole.js\\n#Repository URL: '+this.repositoryURL;
+        this.welcomeMessage = welcomeMessage || '# konsole.js ' + this.version + ' - Type "help" to see available commands.\\n# Created by Michal Pietraszko (@theHarsay)\\n# Available on Github: github.com/Harsay/konsole.js\\n# Repository URL is set to: '+this.repositoryURL+'\\n# Repository server is available on github: github.com/Harsay/konsole.js-repository-server';
 
         document.addEventListener('keypress', this.processKeyCharacter.bind(this));
         document.addEventListener('keydown', this.processActionKey.bind(this));
