@@ -55,6 +55,3 @@ Working example:
 
 ## Requirements
 Modern browser supporting ES6.
-
-## todo
-- create wiki
